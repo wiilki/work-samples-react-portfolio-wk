@@ -13,10 +13,10 @@ const projects = [
 function Portfolio() {
     return (
         <section id="portfolio">
-            <div class="section-title">
+            <div className="section-title">
                 <h2>Portfolio</h2>
             </div>
-            <div class="portfolio-container">
+            <div className="portfolio-container">
                 <Project projects={projects} />
             </div>
         </section>

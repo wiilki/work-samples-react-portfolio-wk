@@ -2,9 +2,9 @@ import React from "react";
 
 function Project(props) {
   return (
-    <div class="portfolio-wrap">
+    <div className="portfolio-wrap">
         {props.projects.map((project) => (
-          <div class="portfolio-info">
+          <div className="portfolio-info">
          <h4>{project.title}</h4>
          <a href={project.repo} title={project.title}><img src={project.screenshot} alt="screenshot"></img></a>
         </div>
