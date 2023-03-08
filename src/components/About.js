@@ -1,0 +1,15 @@
+import React from "react";
+import profileImg from "../assets/img/profile-img.jpg"
+
+function About() {
+    return (
+        <div class="section-title">
+            <h2>About</h2>
+            <p>My name is Will. I'm 34 years old and located out of Los Angeles. I am currently enrolled in UCLA
+                Extentsion's Software Development Bootcamp. I hope to be a Full-stack Developer by April 2023.</p>
+            <img src={profileImg} alt="profile-img"></img>
+        </div>
+    );
+}
+
+export default About;
