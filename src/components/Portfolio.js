@@ -12,12 +12,14 @@ const projects = [
 
 function Portfolio() {
     return (
-        <section id="portfolio">
-            <div className="section-title">
-                <h2>Portfolio</h2>
-            </div>
-            <div className="portfolio-container">
-                <Project projects={projects} />
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container" data-aos="fade-up">
+                <div className="section-title">
+                    <h2>Portfolio</h2>
+                </div>
+                <div className="portfolio-container">
+                    <Project projects={projects} />
+                </div>
             </div>
         </section>
     );
