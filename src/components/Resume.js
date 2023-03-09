@@ -8,22 +8,31 @@ function Resume() {
                 <div className="section-title">
                     <h2>Resume</h2>
                 </div>
-
+                <h6 className="resume-download">Download my RESUME (insert late)</h6>
                 <div className="row">
+
                     <div className="col-lg-6">
-                        <h4 className="resume-title">Download my RESUME (insert late)</h4>
 
                         <div className="resume-item">
                             <h4>Front-end Proficiencies</h4>
                             <ul>
-                                <li></li>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Javascript</li>
+                                <li>JQuery</li>
+                                <li>responsive design</li>
+                                <li>React</li>
+                                <li>Bootstrap</li>
                             </ul>
                         </div>
-
+                    </div>
+                    <div className="col-lg-6">
                         <div className="resume-item">
                             <h4>Back-end Proficiencies</h4>
                             <ul>
-                                <li></li>
+                                <li>APIs</li>
+                                <li>Node</li>
+                                <li>SQL</li>
                             </ul>
                         </div>
                     </div>
