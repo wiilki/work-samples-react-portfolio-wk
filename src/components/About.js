@@ -4,7 +4,7 @@ import profileImg from "../assets/profile-img.jpg"
 function About() {
     return (
         <div className="section-title">
-            <div class="section-title">
+            <div className="section-title">
                 <h2>About</h2>
             </div>
             <p>My name is Will. I'm 34 years old and located out of Los Angeles. I am currently enrolled in UCLA
