@@ -5,6 +5,7 @@ import Portfolio from "../src/components/Portfolio";
 import Contact from "../src/components/Contact";
 import Resume from "../src/components/Resume";
 import Home from "../src/components/Home";
+import '../src/styles/index.css';
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
       <Header />
       <Home />
       <About />
-      <Portfolio />
       <Resume />
+      <Portfolio />
       <Contact />    
       <Footer />
     </div>
