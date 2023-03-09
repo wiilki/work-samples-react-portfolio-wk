@@ -6,6 +6,7 @@ function Resume() {
             <div class="section-title">
                 <h2>Resume</h2>
             </div>
+            <h4>Download my RESUME (insert late)</h4>
             <div class="front-end-title">
                 <h3>Front-end Proficiencies</h3>
             </div>
