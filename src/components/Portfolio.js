@@ -13,8 +13,8 @@ const projects = [
 
 function Portfolio() {
     return (
-        <section id="portfolio" class="portfolio section-bg">
-            <div class="container" data-aos="fade-up">
+        <section id="portfolio" className="portfolio section-bg">
+            <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Portfolio</h2>
                 </div>
