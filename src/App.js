@@ -1,3 +1,4 @@
+import "./index.css";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 import About from "../src/components/About";
@@ -5,7 +6,13 @@ import Portfolio from "../src/components/Portfolio";
 import Contact from "../src/components/Contact";
 import Resume from "../src/components/Resume";
 import Home from "../src/components/Home";
-import "./index.css";
+import 'aos';
+import 'bootstrap';
+import 'glightbox';
+import 'isotope-layout';
+import 'swiper';
+import 'typed.js';
+
 
 function App() {
   return (
