@@ -20,7 +20,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // If it is, we set the current page to 'nav-link-active', otherwise we set it to 'nav-link'
             className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-home"></i> <span>Home</span></a></li>
+            <i className="bx bx-home"></i> <span>Home</span></a></li>
         <li className="nav-item">
           <a
             href="#about"
@@ -28,7 +28,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
             className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-user"></i> <span>About Me</span></a></li>
+            <i className="bx bx-user"></i> <span>About Me</span></a></li>
         <li className="nav-item">
           <a
             href="#resume"
@@ -36,7 +36,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // Check to see if the currentPage is `Resume`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
             className={currentPage === 'Resume' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+            <i className="bx bx-file-blank"></i> <span>Resume</span></a></li>
         <li className="nav-item">
           <a
             href="#portfolio"
@@ -44,7 +44,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // Check to see if the currentPage is `Portfolio`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
             className={currentPage === 'Portfolio' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+            <i className="bx bx-book-content"></i> <span>Portfolio</span></a></li>
         <li className="nav-item">
           <a
             href="#contact"
@@ -52,7 +52,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // Check to see if the currentPage is `Contact`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
             className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+            <i className="bx bx-envelope"></i> <span>Contact</span></a></li>
       </ul>
     </nav>
   );
