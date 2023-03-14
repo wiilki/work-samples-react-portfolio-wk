@@ -7,6 +7,10 @@ import "./styles/Navigation.css";
 function NavTabs({ currentPage, handlePageChange }) {
   return (
     <nav id="navbar" className="navbar nav-menu">
+      <div className="navtitle">
+        <h3>Will Kim</h3>
+      </div>
+
       <ul className="nav nav-tabs">
         <li className="nav-item">
           <a
@@ -24,7 +28,7 @@ function NavTabs({ currentPage, handlePageChange }) {
             // Check to see if the currentPage is `About`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
             className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}
           >
-            <i class="bx bx-user"></i> <span>About</span></a></li>
+            <i class="bx bx-user"></i> <span>About Me</span></a></li>
         <li className="nav-item">
           <a
             href="#resume"

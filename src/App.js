@@ -1,13 +1,13 @@
-/* Scripts */
-import 'aos';
-import 'bootstrap';
-import 'glightbox';
-import 'isotope-layout';
-import 'swiper';
-
 import React from "react";
 import PortfolioContainer from "./components/PortfolioContainer";
+import "./index.css"
 
-const App = () => <PortfolioContainer />;
+const App = () => {
+  return (
+    <div>
+      <PortfolioContainer />
+    </div>
+  );
+};
 
 export default App;

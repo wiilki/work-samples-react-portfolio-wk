@@ -1,9 +1,9 @@
 #home {
-    width: 100%;
-    height: 100vh;
-    background: url("../assets/home-bg.jpg") top right no-repeat;
-    background-size: cover;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("../assets/home-bg.png") top right no-repeat;
+  background-size: cover;
+  position: relative;
   }
   
   @media (min-width: 992px) {

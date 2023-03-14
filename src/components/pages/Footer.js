@@ -8,6 +8,7 @@ function Footer() {
                 <h3>Will Kim</h3>
                 <div className="social-links">
                     <a href="https://www.linkedin.com/in/thewillkim/" target="blank" className="linkedin"><i className="bx bxl-linkedin"></i></a>
+                    <a href="https://github.com/wiilki/" target="blank" className="github"><i className="bx bxl-github"></i></a>
                 </div>
                 <div className="copyright">
                     &copy; Copyright <strong><span>Will Kim</span></strong>. All Rights Reserved

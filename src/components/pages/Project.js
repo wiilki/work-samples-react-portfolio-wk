@@ -5,7 +5,7 @@ function Project(props) {
     <div className="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
       {/* Iterating over an array of "projects" contained in the "props" object */}
       {props.projects.map((project, index) => (
-        <div className={`col-lg-4 col-md-6 portfolio-item filter-${project.type}`} key={project.id || index}>
+        <div className={`col-lg-4 col-md-6 portfolio-item`} key={project.id || index}>
           <div className="portfolio-wrap">
             <img src={project.screenshot} className="img-fluid" alt="screenshot" />
             <div className="portfolio-info">
