@@ -11,8 +11,6 @@ import 'bootstrap';
 import 'glightbox';
 import 'isotope-layout';
 import 'swiper';
-import 'typed.js';
-
 
 function App() {
   return (
