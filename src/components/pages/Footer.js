@@ -5,7 +5,6 @@ function Footer() {
     return (
         <footer id="footer">
             <div className="container">
-                <h3>Will Kim</h3>
                 <div className="social-links">
                     <a href="https://www.linkedin.com/in/thewillkim/" target="blank" className="linkedin"><i className="bx bxl-linkedin"></i></a>
                     <a href="https://github.com/wiilki/" target="blank" className="github"><i className="bx bxl-github"></i></a>
