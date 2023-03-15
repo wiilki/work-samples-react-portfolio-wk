@@ -11,7 +11,14 @@ function Project(props) {
             <div className="portfolio-info">
               <h4>{project.title}</h4>
               <div className="portfolio-links">
-                <a href={project.repo} title={project.title} data-gallery="portfolioGallery" className="portfolio-lightbox"><i className="bx bx-plus"></i></a>
+                <a href={project.repo} title={project.title} data-gallery="portfolioGallery" className="portfolio-lightbox" target="_blank" ><i className="bx bxl-github"></i></a>
+                {/* Display icon only if 'deployed' value exists */}
+                {project.deployed && (
+                  <a href={project.deployed} title={project.title} data-gallery="portfolioGallery" className="portfolio-lightbox" target="_blank" >
+                    <i className="bx bx-link"></i>
+                  </a>
+                )}
+
               </div>
             </div>
           </div>
