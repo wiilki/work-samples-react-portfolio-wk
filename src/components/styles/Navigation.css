@@ -72,14 +72,15 @@
 .nav-menu .active:focus,
 .nav-menu li:hover > a {
   color: #fff;
-  background: #0563bb;
+  background: #699fd1;
 }
 
 .nav-menu a:hover span,
 .nav-menu .active span,
 .nav-menu .active:focus span,
 .nav-menu li:hover > a span {
-  color: #0011ff;
+  color: #7e7e7e;
+  font-weight: bold;
 }
 
 .nav-menu a:hover,
