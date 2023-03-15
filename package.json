@@ -2,7 +2,7 @@
   "name": "work-samples-react-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wiilki.github.io/work-samples-react-portfolio-wk/",
+  "homepage": "https://william-kim.com/",
   "dependencies": {
     "@srexi/purecounterjs": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.4",
