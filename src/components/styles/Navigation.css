@@ -78,7 +78,7 @@
 .nav-menu .active span,
 .nav-menu .active:focus span,
 .nav-menu li:hover > a span {
-  color: #fff;
+  color: #0011ff;
 }
 
 .nav-menu a:hover,
