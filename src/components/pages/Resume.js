@@ -8,7 +8,8 @@ function Resume() {
                 <div className="section-title">
                     <h2>Resume</h2>
                 </div>
-                <h6 className="resume-download">Download my RESUME (insert later)</h6>
+                <br></br>
+                <h6 className="resume-download">Download my RESUME (insert here)</h6>
                 <br></br>
                 <div className="row">
 
