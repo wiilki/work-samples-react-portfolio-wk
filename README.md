@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a React portfolio project that I created to showcase my web development skills. The project helps me stand out from other developers by utilizing the latest technologies. It features a single-page application with a header, content section, and footer, and includes sections for About Me, Portfolio, Contact, and Resume. The project satisfies the acceptance criteria for a potential employer to assess my experience building single-page applications.
+This is a React portfolio project that I created to showcase my web development skills. The project helps me stand out from other developers by utilizing the latest technologies. It features a single-page application with a header, content section, and footer, and includes sections for About Me, Portfolio, Contact, and Resume. The project allows for a potential employer to assess my experience building single-page applications.
 
 ## Table of Contents
 
