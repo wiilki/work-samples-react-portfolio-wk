@@ -154,3 +154,7 @@
     bottom: 15px;
     right: 15px;
   }
+
+  .portfolio-wrap{
+    border-radius: 10px;
+  }
