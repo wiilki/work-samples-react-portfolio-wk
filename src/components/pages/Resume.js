@@ -9,7 +9,7 @@ function Resume() {
                     <h2>Resume</h2>
                 </div>
                 <br></br>
-                <h6 className="resume-download">Download my <a href="../assets/resume" download>RESUME</a></h6>
+                <h6 className="resume-download">Download my <a href="../imports/resume.pdf" download>RESUME</a></h6>
                 <br></br>
                 <div className="row">
 
