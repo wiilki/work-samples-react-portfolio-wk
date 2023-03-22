@@ -8,7 +8,7 @@ import Portfolio from './components/pages/Portfolio';
 import Contact from './components/pages/Contact';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('About');
+  const [currentPage, setCurrentPage] = useState('Home');
 
   const handlePageChange = (page) => setCurrentPage(page);
 
