@@ -4,6 +4,12 @@ import '../styles/Portfolio.css';
 
 const projects = [
     {
+        title: "Pet Picker MERN",
+        screenshot: "./imports/portfolio/portfolio-15.jpg",
+        repo: "https://github.com/wiilki/pet-picker",
+        deployed: "https://pet-picker-mern.herokuapp.com/",
+    },
+    {
 
         title: "Just Another Text Editor",
         screenshot: "./imports/portfolio/portfolio-14.jpg",
