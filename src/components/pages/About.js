@@ -8,8 +8,7 @@ function About() {
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>About</h2>
-                    <p>My name is Will. I'm 34 years old and located out of Los Angeles. I am currently enrolled in UCLA
-                        Extentsion's Software Development Bootcamp. I hope to be a Full-stack Developer by April 2023.</p>
+                    <p>As an IT Specialist with a passion for software development, I am a recent graduate of the Full Stack Web Development Coding Bootcamp at UCLA Extension. My coursework has equipped me with the skills to design and develop full-stack web applications using a range of technologies, including HTML, CSS, React, Node, and SQL.</p>
                 </div>
                 <div className="row">
                     <div className="col-lg-4">
@@ -27,7 +26,7 @@ function About() {
                             </div>
                             <div className="col-lg-6">
                                 <ul>
-                                    <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>34</span></li>
+                                    <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>35</span></li>
                                     <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:thewillkim@icloud.com">thewillkim@icloud.com</a></span></li>
                                     <li><i className="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
                                 </ul>
