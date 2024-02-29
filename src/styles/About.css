@@ -31,11 +31,11 @@
   }
 
   .about .img-fluid,
-  .about .img-fluid-profile{
+  .about .profile-img{
     border-radius: 10px;
   }
 
-  .about .img-fluid-profile {
+  .about .profile-img {
     margin-left: 70px;
   }
 

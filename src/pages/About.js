@@ -16,7 +16,7 @@ function About() {
                 </div>
                 <div className="row">
                     <div className="col-lg-4">
-                        <img src={profileImg} alt="profile-img" className="img-fluid-profile" />
+                        <img src={profileImg} alt="profile-img" className="profile-img" />
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <h3>UI/UX Designer & Web Developer.</h3>
