@@ -18,8 +18,8 @@ function App() {
     switch (currentPage) {
       case 'About':
         return <About />;
-      case 'Resume':
-        return <Resume />;
+      // case 'Resume':
+      //   return <Resume />;
       case 'Portfolio':
         return <Portfolio />;
       case 'Contact':
