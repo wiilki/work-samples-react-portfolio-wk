@@ -22,11 +22,6 @@ const calculateAge = (birthday) => {
 
 export const details = [
   {
-    title: "Birthday",
-    icon: "bi bi-chevron-right",
-    content: "June 1988",
-  },
-  {
     title: "Website",
     icon: "bi bi-chevron-right",
     content: <a href="https://william-kim.com/" target="_blank" rel="noopener noreferrer">william-kim.com</a>,

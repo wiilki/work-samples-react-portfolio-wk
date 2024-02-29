@@ -1,5 +1,5 @@
-import '../styles/Footer.css';
 import { contactInfo } from "../data/myData";
+import '../styles/Footer.css';
 
 function Footer() {
     return (
@@ -8,7 +8,6 @@ function Footer() {
 
                 {/* Social Link */}
                 <div className="social-links">
-                    {/* Updated links with rel="noreferrer noopener" */}
                     <a href={contactInfo.socialLinks.linkedIn} target="_blank" rel="noreferrer noopener" className="linkedin"><i className="bx bxl-linkedin"></i></a>
                     <a href={contactInfo.socialLinks.github} target="_blank" rel="noreferrer noopener" className="github"><i className="bx bxl-github"></i></a>
                 </div>

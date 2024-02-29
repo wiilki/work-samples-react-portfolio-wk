@@ -1,6 +1,10 @@
 import '../styles/Resume.css';
 import { frontEndProficiencies, backEndProficiencies } from "../data/resumeData";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 function Resume() {
     return (
         <section id="resume" className="resume">

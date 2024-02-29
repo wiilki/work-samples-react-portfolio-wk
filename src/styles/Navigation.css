@@ -1,6 +1,7 @@
 /* Desktop Navigation */
 #navbar {
   display: flex;
+  justify-content: flex-end;
 }
 
 .nav-menu {
@@ -52,18 +53,15 @@
   color: #45505b;
 }
 
-@media (min-width: 992px) {
+.nav-menu a,
+.nav-menu a:focus {
+  width: 56px;
+}
 
-  .nav-menu a,
-  .nav-menu a:focus {
-    width: 56px;
-  }
-
-  .nav-menu a span,
-  .nav-menu a:focus span {
-    display: none;
-    color: #fff;
-  }
+.nav-menu a span,
+.nav-menu a:focus span {
+  display: none;
+  color: #fff;
 }
 
 .nav-menu a:hover,

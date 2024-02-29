@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
+import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div>
-      <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+      <Navigation currentPage={currentPage} handlePageChange={handlePageChange} />
       {renderPage()}
       <Footer />
     </div>

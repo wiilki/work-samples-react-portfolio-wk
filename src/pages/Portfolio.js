@@ -1,6 +1,10 @@
 import Project from "../components/Project";
 import '../styles/Portfolio.css';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 function Portfolio() {
     return (
         <section id="portfolio" className="portfolio section-bg">
