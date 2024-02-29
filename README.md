@@ -1,38 +1,37 @@
 # Work Samples React Portfolio
 
-## Description
+## Overview
 
-This is a React portfolio project that I created to showcase my web development skills. The project helps me stand out from other developers by utilizing the latest technologies. It features a single-page application with a header, content section, and footer, and includes sections for About Me, Portfolio, Contact, and Resume. The project allows for a potential employer to assess my experience building single-page applications.
+Crafted with the latest in web development technology, this React-based portfolio elegantly showcases my skills in web development. Designed to make a lasting impression, this single-page application features a clean layout complete with a header, content section, and footer. It's structured to include pivotal sections such as About Me, Portfolio, Contact, and Resume, providing a comprehensive view of my capabilities and experience in crafting single-page applications for potential employers.
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [Tests](#tests)
-- [Questions](#questions)
+- [How to Use](#how-to-use)
+- [Acknowledgments](#acknowledgments)
+- [Testing](#testing)
+- [Inquiries](#inquiries)
 
 ## Installation
 
-- Visit the [deployed site](https://william-kim.com/)
+- For immediate access, visit the [deployed site](https://william-kim.com/).
 
-## Usage
+## How to Use
 
-- Click on the navigation titles to switch between the different sections of the portfolio
-- View the developer's bio and photo in the About Me section
-- See a list of titled images linking to deployed applications and corresponding GitHub repositories in the Portfolio section
-- Use the Contact form to send a message to the developer
-- View the developer's proficiencies and download their resume in the Resume section
-- Access the developer's GitHub, LinkedIn, and other profiles from the footer
+- Navigate through the site by clicking on the titles in the navigation bar.
+- Discover more about the developer in the About Me section, featuring a bio and photo.
+- Explore the Portfolio section to view a curated list of projects, each with an image, a link to the live application, and a link to the GitHub repository.
+- Reach out to the developer directly via the Contact form.
+- Download the developer's resume and review their proficiencies in the Resume section.
+- Connect with the developer through GitHub, LinkedIn, and more, available in the footer.
 
-## Credits
+## Acknowledgments
 
-This application was built using the following technologies:
+This project was brought to life using React and an array of supportive technologies:
 
 - [Webpack](https://webpack.js.org/)
 - [Babel](https://babeljs.io/)
 - [Workbox](https://developers.google.com/web/tools/workbox)
-- [idb](https://github.com/jakearchibald/idb)
 - [React](https://reactjs.org/) 
 - [React-DOM](https://reactjs.org/docs/react-dom.html) 
 - [React-Scripts](https://github.com/facebook/create-react-app) 
@@ -40,17 +39,13 @@ This application was built using the following technologies:
 - [Bootstrap-Icons](https://icons.getbootstrap.com/) 
 - [Boxicons](https://boxicons.com/) 
 - [jQuery](https://jquery.com/) 
-- [jQuery-Form](https://github.com/jquery-form/form) 
-- [Swiper](https://swiperjs.com/) 
-- [Waypoints](https://github.com/imakewebthings/waypoints) 
 - [AOS](https://michalsnik.github.io/aos/) 
-- [Glightbox](https://github.com/biati-digital/glightbox) 
 - [Ityped](https://ityped.surge.sh/) 
 
-## Tests
+## Testing
 
-![Screenshot](/src/components/assets/screenshot.jpg)
+![Portfolio Screenshot](/src/assets/screenshot.jpg)
 
-## Questions
+## Inquiries
 
-If you have any questions or would like to report an issue, please email me at [thewillkim@icloud.com](mailto:thewillkim@icloud.com).
+For further information or to report issues, please contact me at [thewillkim@icloud.com](mailto:thewillkim@icloud.com).
