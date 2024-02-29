@@ -1,5 +1,11 @@
 export const projectData = [
     {
+        title: "View Git Repo for this Site",
+        screenshot: "./assets/portfolio/portfolio-3.jpg",
+        repo: "https://github.com/wiilki/work-samples-react-portfolio-wk",
+        codes: "React",
+    },
+    {
         title: "Cannabis Dispensary Website",
         screenshot: "./assets/portfolio/portfolio-16.png",
         repo: "https://github.com/wiilki/budzdeli",
