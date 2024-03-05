@@ -50,7 +50,7 @@ export const details = [
 
 export const contactInfo = {
     email: "thewillkim@icloud.com",
-    location: "Victoville, CA",
+    location: "Victorville, CA",
     socialLinks: {
         linkedIn: "https://www.linkedin.com/in/thewillkim/",
         github: "https://github.com/wiilki/",
