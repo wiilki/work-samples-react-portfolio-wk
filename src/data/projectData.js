@@ -20,6 +20,22 @@ export const projectData = [
         codes: "MERN, React",
     },
     {
+
+        title: "Project Manager",
+        screenshot: "./assets/portfolio/portfolio-12.jpg",
+        repo: "https://github.com/wiilki/so-you-want-to-manage-a-project",
+        deployed: "https://vast-brook-40513.herokuapp.com/",
+        codes: "Node.js, Express.js, Handlebars.js, MySQL",        
+    },
+    {
+
+        title: "CMS Style Tech Blog",
+        screenshot: "./assets/portfolio/portfolio-11.jpg",
+        repo: "https://github.com/wiilki/CMS-style-tech-blog",
+        deployed: "https://gentle-basin-90216.herokuapp.com/",
+        codes: "Node.js, Express.js, Handlebars.js, MySQL",
+    },
+    {
         title: "Time Javascript Quiz",
         screenshot: "./assets/portfolio/portfolio-8.png",
         repo: "https://github.com/wiilki/timed-javascript-quiz-wk",
@@ -40,22 +56,6 @@ export const projectData = [
         screenshot: "./assets/portfolio/portfolio-13.jpg",
         repo: "https://github.com/wiilki/social-network-data-api",
         codes: "Express.js, MongoDB, Mongoose",
-    },
-    {
-
-        title: "Project Manager",
-        screenshot: "./assets/portfolio/portfolio-12.jpg",
-        repo: "https://github.com/wiilki/so-you-want-to-manage-a-project",
-        deployed: "https://vast-brook-40513.herokuapp.com/",
-        codes: "Node.js, Express.js, Handlebars.js, MySQL",        
-    },
-    {
-
-        title: "CMS Style Tech Blog",
-        screenshot: "./assets/portfolio/portfolio-11.jpg",
-        repo: "https://github.com/wiilki/CMS-style-tech-blog",
-        deployed: "https://gentle-basin-90216.herokuapp.com/",
-        codes: "Node.js, Express.js, Handlebars.js, MySQL",
     },
     {
         title: "Employee Database Manager",
