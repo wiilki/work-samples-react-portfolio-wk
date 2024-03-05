@@ -10,7 +10,14 @@ export const projectData = [
         screenshot: "./assets/portfolio/portfolio-16.png",
         repo: "https://github.com/wiilki/budzdeli",
         deployed: "https://budzdeli-ec6301c9bfc7.herokuapp.com/",
-        codes: "React",
+        codes: "React, Next.js",
+    },
+    {
+        title: "Pet Picker",
+        screenshot: "./assets/portfolio/portfolio-15.png",
+        repo: "https://github.com/wiilki/pet-picker",
+        deployed: "https://pet-picker-mern.herokuapp.com/",
+        codes: "MERN, React",
     },
     {
         title: "Time Javascript Quiz",
@@ -18,13 +25,6 @@ export const projectData = [
         repo: "https://github.com/wiilki/timed-javascript-quiz-wk",
         deployed: "https://wiilki.github.io/timed-javascript-quiz-wk/",
         codes: "React",
-    },
-    {
-        title: "Pet Picker",
-        screenshot: "./assets/portfolio/portfolio-15.jpg",
-        repo: "https://github.com/wiilki/pet-picker",
-        deployed: "https://pet-picker-mern.herokuapp.com/",
-        codes: "MERN",
     },
     {
 
