@@ -79,9 +79,9 @@ export const projectData = [
     },
     {
         title: "Marvel Geeks Fandom",
-        screenshot: "./assets/portfolio/portfolio-5.jpg",
+        screenshot: "./assets/portfolio/portfolio-5.png",
         repo: "https://github.com/wiilki/marvel-geeks-fandom-page",
-        deployed: "https://wiilki.github.io/marvel-geeks-fandom-page/",
+        deployed: "https://marvel-geeks-0345e598bc8e.herokuapp.com/",
         codes: "React.js",
     },
     {
