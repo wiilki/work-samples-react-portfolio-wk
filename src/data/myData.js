@@ -1,12 +1,7 @@
 import React from 'react';
 
 export const biography = `
-As a Full Stack Developer, I leverage a strong emphasis on React, coupled with experience in Next.js and API integrations. Proficient 
-in CSS styling and UX design using Bootstrap and Tailwind, I excel in meticulous organization and enjoy breaking down projects into 
-elegant React components. Despite my relatively recent start in coding, I've dedicated countless hours to refining my skills, fueled 
-by a deep passion for frontend development. With a solid IT foundation and sharp analytical skills, I merge creativity with problem-solving 
-to craft user-friendly applications. Recognized for meticulous attention to detail and adeptness in managing complex projects, I am eager
- to bring these valuable skills to the forefront of innovative software development endeavors.
+As a Full Stack Developer, I specialize in React with experience in Next.js and API integrations. Proficient in CSS styling and UX design using Bootstrap and Tailwind, I excel in organizing projects into elegant React components. While I'm still in the early stages of my coding journey, having dedicated countless hours to refining my skills in recent years, my passion for software development continues to grow. With a strong IT foundation and sharp analytical skills, I combine creativity with problem-solving to craft user-friendly applications. Recognized for meticulous attention to detail and adept project management, I am eager to contribute these valuable skills to innovative software development endeavors.
 `;
 
 const calculateAge = (birthday) => {
