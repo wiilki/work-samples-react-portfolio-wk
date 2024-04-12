@@ -9,11 +9,11 @@ export const pagesData = [
       icon: 'bx bx-user',
       link: '#about',
     },
-    // {
-    //   name: 'Resume',
-    //   icon: 'bx bx-file-blank',
-    //   link: '#resume',
-    // },
+    {
+      name: 'Resume',
+      icon: 'bx bx-file-blank',
+      link: '#resume',
+    },
     {
       name: 'Portfolio',
       icon: 'bx bx-book-content',

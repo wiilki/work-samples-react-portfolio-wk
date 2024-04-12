@@ -1,19 +1,31 @@
 export const frontEndProficiencies = [
     "HTML",
     "CSS",
-    "Javascript",
-    "JQuery",
-    "responsive design",
+    "JavaScript",
+    "jQuery",
     "React",
     "Bootstrap",
+    "State Management",
 ];
 
 export const backEndProficiencies = [
-    "APIs",
-    "Node",
-    "Express",
+    "Node.js",
+    "Express.js",
+    "GraphQL",
+    "ORM",
+];
+
+export const databaseManagementProficiencies = [
     "SQL",
-    "Sequelize",
     "MongoDB",
-    "Mongoose",
+    "NoSQL Databases",
+];
+
+export const apisIntegrationProficiencies = [
+    "RESTful services",
+    "Third-party APIs",
+];
+
+export const fullStackProficiencies = [
+    "MERN Stack (MongoDB, Express.js, React, Node.js)",
 ];

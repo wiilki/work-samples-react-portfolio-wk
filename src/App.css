@@ -168,17 +168,6 @@ section {
   color: #45505b;
 }
 
-.section-title h2::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 120px;
-  height: 1px;
-  background: #ddd;
-  bottom: 1px;
-  left: calc(50% - 60px);
-}
-
 .section-title h2::after {
   content: "";
   position: absolute;
