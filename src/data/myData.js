@@ -19,12 +19,12 @@ export const details = [
   {
     title: "Website",
     icon: "bi bi-chevron-right",
-    content: <a href="https://william-kim.com/" target="_blank" rel="noopener noreferrer">william-kim.com</a>,
+content: <a href="https://work-samples-react-portfolio-wk-bfdd-5jvtx10ju.vercel.app/" target="_blank" rel="noopener noreferrer">william-kim.com</a>,
   },
   {
     title: "City",
     icon: "bi bi-chevron-right",
-    content: "Victorville, USA",
+    content: "Chino Hills, USA",
   },
   {
     title: "Age",
@@ -45,7 +45,7 @@ export const details = [
 
 export const contactInfo = {
     email: "thewillkim@icloud.com",
-    location: "Victorville, CA",
+    location: "Chino Hills, CA",
     socialLinks: {
         linkedIn: "https://www.linkedin.com/in/thewillkim/",
         github: "https://github.com/wiilki/",

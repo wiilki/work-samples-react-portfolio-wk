@@ -19,7 +19,7 @@ function Resume() {
                     <h2>Resume</h2>
                 </div>
                 <br />
-                <h6 className="resume-download">Download my <a href="../imports/resume.pdf" download>RESUME</a></h6>
+                <h6 className="resume-download">Download my <a href="https://app.rezi.ai/s/oMVJO6lISu0pTn5AF3Gi" target="_blank">RESUME</a></h6>
                 <br />
                 <div className="row">
                     <div className="col-lg-4">
