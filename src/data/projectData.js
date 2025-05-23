@@ -9,14 +9,13 @@ export const projectData = [
         title: "Cannabis Dispensary Website",
         screenshot: "./assets/portfolio/portfolio-16.png",
         repo: "https://github.com/wiilki/budzdeli",
-        deployed: "https://budzdeli-ec6301c9bfc7.herokuapp.com/",
+        deployed: "https://budzdeli.vercel.app/",
         codes: "React, Next.js",
     },
     {
         title: "Pet Picker",
         screenshot: "./assets/portfolio/portfolio-15.png",
         repo: "https://github.com/wiilki/pet-picker",
-        deployed: "https://pet-picker-mern.herokuapp.com/",
         codes: "MERN, React",
     },
     {
@@ -24,7 +23,6 @@ export const projectData = [
         title: "Project Manager",
         screenshot: "./assets/portfolio/portfolio-12.jpg",
         repo: "https://github.com/wiilki/so-you-want-to-manage-a-project",
-        deployed: "https://vast-brook-40513.herokuapp.com/",
         codes: "Node.js, Express.js, Handlebars.js, MySQL",        
     },
     {
@@ -32,7 +30,6 @@ export const projectData = [
         title: "CMS Style Tech Blog",
         screenshot: "./assets/portfolio/portfolio-11.jpg",
         repo: "https://github.com/wiilki/CMS-style-tech-blog",
-        deployed: "https://gentle-basin-90216.herokuapp.com/",
         codes: "Node.js, Express.js, Handlebars.js, MySQL",
     },
     {
@@ -47,7 +44,6 @@ export const projectData = [
         title: "Just Another Text Editor",
         screenshot: "./assets/portfolio/portfolio-14.jpg",
         repo: "https://github.com/wiilki/just-another-text-editor-wk",
-        deployed: "https://infinite-cliffs-55483.herokuapp.com/",
         codes: "PWA",
     },
     {
@@ -67,7 +63,6 @@ export const projectData = [
         title: "Simple Note Taker",
         screenshot: "./assets/portfolio/portfolio-2.jpg",
         repo: "https://github.com/wiilki/simple-note-taker-application-wk",
-        deployed: "https://whispering-lake-09940.herokuapp.com/",
         codes: "Express.js",
     },
     {
@@ -81,7 +76,6 @@ export const projectData = [
         title: "Marvel Geeks Fandom",
         screenshot: "./assets/portfolio/portfolio-5.png",
         repo: "https://github.com/wiilki/marvel-geeks-fandom-page",
-        deployed: "https://marvel-geeks-0345e598bc8e.herokuapp.com/",
         codes: "React.js",
     },
     {
