@@ -1,0 +1,45 @@
+name: Visual QA · kinetic portfolio
+
+on:
+  push:
+    branches:
+      - portfolio/kinetic-tech-command-center-2026
+    paths:
+      - scripts/preview-qa.mjs
+      - .github/workflows/visual-qa.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  visual-smoke:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install and build
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.56.0
+          PUBLIC_URL=/ npm run build
+      - name: Run desktop and mobile visual checks
+        run: node scripts/preview-qa.mjs
+      - name: Save screenshots for review
+        shell: bash
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git -C "$GITHUB_WORKSPACE" config user.name "github-actions[bot]"
+          git -C "$GITHUB_WORKSPACE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$GITHUB_WORKSPACE" add -A docs/previews
+          if ! git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
+            git -C "$GITHUB_WORKSPACE" commit -m "Store verified kinetic portfolio previews"
+            git -C "$GITHUB_WORKSPACE" pull --rebase origin "${GITHUB_REF_NAME}"
+            git -C "$GITHUB_WORKSPACE" push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

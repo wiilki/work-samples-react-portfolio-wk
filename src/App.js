@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { projectData, featuredProjects, filters } from "./data/projectData";
 import profileImage from "./assets/profile-img.jpg";
+import { MotionSystem, TechAtmosphere, SignalStrip, SignalDiagram } from "./TechFX";
 import "./App.css";
+import "./TechFX.css";
 
 const github = "https://github.com/wiilki";
 const linkedin = "https://www.linkedin.com/in/thewillkim/";
@@ -48,6 +50,7 @@ function PreviewArtwork({ project }) {
 
 function ProjectPreview({ project, hero = false }) {
   const [sourceIndex, setSourceIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Saved browser screenshots load first. External services are fallbacks
   // while captures are being refreshed; illustrations are never called photos.
@@ -60,20 +63,21 @@ function ProjectPreview({ project, hero = false }) {
 
   return (
     <div className={"project-preview tone-" + project.tone + (hero ? " preview-hero" : "")}>
-      {screenshot ? (
+      {!imageLoaded && <PreviewArtwork project={project} />}
+      {screenshot && (
         <img
-          className="project-screenshot"
+          className={"project-screenshot" + (imageLoaded ? " is-loaded" : "")}
           src={screenshot}
           alt={"Screenshot of " + project.title + " website"}
           loading={hero ? "eager" : "lazy"}
           decoding="async"
-          onError={() => setSourceIndex((index) => index + 1)}
+          onLoad={() => setImageLoaded(true)}
+          onError={() => { setImageLoaded(false); setSourceIndex((index) => index + 1); }}
         />
-      ) : (
-        <PreviewArtwork project={project} />
       )}
+      <div className="preview-chrome" aria-hidden="true"><i /><i /><i /><span>{project.live ? "LIVE_CAPTURE" : "DESIGN_CONCEPT"}</span></div>
       <span className="preview-type">
-        {screenshot ? "ACTUAL WEBSITE CAPTURE" : project.live ? "SCREENSHOT UNAVAILABLE" : "DESIGN ILLUSTRATION"}
+        {imageLoaded ? "ACTUAL WEBSITE CAPTURE" : screenshot ? "LOADING SITE CAPTURE" : project.live ? "SCREENSHOT UNAVAILABLE" : "DESIGN ILLUSTRATION"}
       </span>
     </div>
   );
@@ -94,9 +98,27 @@ function ProjectActions({ project, compact = false }) {
   );
 }
 
+function onProjectPointerMove(event) {
+  if (event.pointerType === "touch" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = event.currentTarget.getBoundingClientRect();
+  const x = (event.clientX - box.left) / box.width;
+  const y = (event.clientY - box.top) / box.height;
+  event.currentTarget.style.setProperty("--tilt-y", ((x - .5) * 3.5).toFixed(2) + "deg");
+  event.currentTarget.style.setProperty("--tilt-x", ((.5 - y) * 3.5).toFixed(2) + "deg");
+  event.currentTarget.style.setProperty("--hover-x", (x * 100).toFixed(1) + "%");
+  event.currentTarget.style.setProperty("--hover-y", (y * 100).toFixed(1) + "%");
+}
+
+function onProjectPointerLeave(event) {
+  event.currentTarget.style.removeProperty("--tilt-y");
+  event.currentTarget.style.removeProperty("--tilt-x");
+  event.currentTarget.style.removeProperty("--hover-x");
+  event.currentTarget.style.removeProperty("--hover-y");
+}
+
 function ProjectCard({ project, featured = false }) {
   return (
-    <article className={"project-card" + (featured ? " featured-card" : "")}>
+    <article className={"project-card" + (featured ? " featured-card" : "")} onPointerMove={onProjectPointerMove} onPointerLeave={onProjectPointerLeave}>
       <div className="project-card-media">
         <ProjectPreview project={project}/>
         <div className="card-status"><span className={project.live ? "status-dot" : "status-dot status-dot-muted"}/>{project.live ? "Published" : "Code project"}</div>
@@ -153,18 +175,28 @@ function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="shell hero-layout">
-        <div className="hero-copy">
-          <div className="eyebrow"><span className="eyebrow-mark"/> INDEPENDENT DEVELOPER · CALIFORNIA</div>
-          <h1 id="hero-title">Building digital work that <em>feels different.</em></h1>
+        <div className="hero-copy" data-reveal>
+          <div className="eyebrow"><span className="eyebrow-mark"/> INDEPENDENT DEVELOPER // CALIFORNIA</div>
+          <h1 id="hero-title">Ideas engineered into <em>living interfaces.</em></h1>
           <p className="hero-lead">I'm Will — a developer focused on making thoughtful, functional products. I bring design, engineering, and real-world problem-solving together in every project.</p>
           <div className="hero-actions">
             <a href="#work" className="button button-dark">Explore my work <span aria-hidden="true">↘</span></a>
             <SiteLink href={github} className="button button-outline">View GitHub</SiteLink>
           </div>
           <div className="hero-trust"><span className="trust-rule" /> A curated collection of independent projects, experiments, and production-ready interfaces.</div>
+          <div className="hero-signal-track" aria-label="Current disciplines">
+            <span className="signal-meter" aria-hidden="true"><i/><i/><i/><i/></span>
+            DESIGN SYSTEMS // APPLICATIONS // AUTOMATION
+          </div>
+          <div className="hero-hud" aria-label="Portfolio summary">
+            <div className="hero-hud-cell"><strong>{projectData.length.toString().padStart(2, "0")}</strong><span>Selected builds</span></div>
+            <div className="hero-hud-cell"><strong>{projectData.filter((p) => p.live).length.toString().padStart(2, "0")}</strong><span>Published sites</span></div>
+            <div className="hero-hud-cell"><strong>2026</strong><span>Latest work</span></div>
+          </div>
         </div>
-        <div className="hero-visual">
+        <div className="hero-visual" data-reveal>
           <div className="hero-image-shell">
+            <span className="holo-index" aria-hidden="true">PROJECT_001 // FEATURED</span>
             <div className="hero-floating-label"><span className="pulse-dot"/> FEATURED BUILD / 01</div>
             <ProjectPreview project={featuredProjects[0]} hero />
             <div className="hero-image-caption">
@@ -196,7 +228,7 @@ function Work() {
     <section className="section work-section" id="work" aria-labelledby="work-title">
       <div className="shell">
         <div className="section-topline"><span>01 / FEATURED WORK</span><span>SELECTED PROJECTS, 2024—2026</span></div>
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <div><p className="section-kicker">DESIGN + DEVELOPMENT</p><h2 id="work-title">The work<span className="accent-dot">.</span></h2></div>
           <p>From full-stack applications to quiet, detail-driven interfaces. Each project has its own challenges, decisions, and purpose.</p>
         </div>
@@ -230,8 +262,8 @@ function About() {
   return (
     <section className="section about-section" id="about" aria-labelledby="about-title">
       <div className="shell about-grid">
-        <div className="about-portrait"><img src={profileImage} alt="Portrait of Will Kim" loading="lazy"/><span className="portrait-tag">HELLO, I'M WILL.</span></div>
-        <div className="about-copy">
+        <div className="about-portrait" data-reveal><img src={profileImage} alt="Portrait of Will Kim" loading="lazy"/><span className="portrait-tag">HELLO, I'M WILL.</span></div>
+        <div className="about-copy" data-reveal>
           <div className="section-topline"><span>02 / ABOUT ME</span></div>
           <p className="section-kicker">CURIOUS BY DESIGN</p>
           <h2 id="about-title">More than lines of code.</h2>
@@ -239,6 +271,7 @@ function About() {
           <p>My background spans hands-on business operations, problem-solving, and full-stack development. That perspective helps me translate complex requirements into approachable experiences, with careful attention to the details that make software feel dependable.</p>
           <p>I work with React and JavaScript, build practical backends, and enjoy experimenting with APIs, automation, and thoughtful product design.</p>
           <div className="about-links"><SiteLink href={linkedin}>LinkedIn</SiteLink><SiteLink href={github}>GitHub</SiteLink><a href="/imports/resume.pdf" target="_blank" rel="noopener noreferrer">Résumé (PDF) <ExternalArrow/></a></div>
+          <SignalDiagram />
         </div>
       </div>
     </section>
@@ -283,7 +316,7 @@ function Expertise() {
           <p>A practical toolkit shaped by the websites, applications, backends, and data projects I've worked on.</p>
         </div>
         <div className="expertise-grid">{areas.map((area) =>
-          <article className="expertise-card" key={area.index}>
+          <article className="expertise-card" key={area.index} data-reveal>
             <span className="expertise-number">{area.index} /</span>
             <h3>{area.title}</h3>
             <p>{area.description}</p>
@@ -300,9 +333,9 @@ function Expertise() {
 function Contact() {
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
-      <div className="shell contact-inner">
+      <div className="shell contact-inner" data-reveal>
         <div><p className="section-kicker">04 / GET IN TOUCH</p><h2 id="contact-title">Have something<br/><em>in mind?</em></h2></div>
-        <div className="contact-side"><p>I'm always interested in an interesting challenge, a thoughtful collaboration, or a conversation about building something useful.</p><a href={"mailto:" + email} className="contact-cta">Start a conversation <ExternalArrow/></a></div>
+        <div className="contact-side"><p>I'm always interested in an interesting challenge, a thoughtful collaboration, or a conversation about building something useful.</p><a href={"mailto:" + email} className="contact-cta">Start a conversation <ExternalArrow/></a><div className="contact-terminal"><span aria-hidden="true">&gt;_</span> AVAILABLE FOR THOUGHTFUL COLLABORATION <span className="terminal-cursor" aria-hidden="true" /></div></div>
       </div>
       <footer className="shell footer-inner"><span>© {new Date().getFullYear()} Will Kim. Built with care.</span><div><SiteLink href={github}>GitHub</SiteLink><SiteLink href={linkedin}>LinkedIn</SiteLink><a href="#top">Back to top ↑</a></div></footer>
     </section>
@@ -310,5 +343,5 @@ function Contact() {
 }
 
 export default function App() {
-  return <><a className="skip-link" href="#work">Skip to projects</a><Header/><main><Hero/><Work/><About/><Expertise/><Contact/></main></>;
+  return <><a className="skip-link" href="#work">Skip to projects</a><MotionSystem/><TechAtmosphere/><Header/><main><Hero/><SignalStrip/><Work/><About/><Expertise/><Contact/></main></>;
 }
