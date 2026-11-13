@@ -190,12 +190,13 @@ a:hover .link-arrow { transform: translate(2px, -2px); }
 
 /* EXPERTISE */
 .expertise-section { background: #fff; }
-.expertise-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.expertise-card { background: #f6f8f4; border: 1px solid #e7ede5; border-radius: 18px; padding: 32px; min-height: 310px; display: flex; flex-direction: column; }
+.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.expertise-card { background: #f6f8f4; border: 1px solid #e7ede5; border-radius: 18px; padding: 32px; min-height: 300px; display: flex; flex-direction: column; }
 .expertise-number { color: #90a286; font-size: 11px; font-weight: 800; letter-spacing: .1em; }
-.expertise-card h3 { font-size: 26px; margin: 33px 0 14px; }
-.expertise-card p { font-size: 13px; line-height: 1.8; color: #6d8071; }
-.expertise-skills { margin-top: auto; padding-top: 20px; border-top: 1px solid #dde6da; font-size: 10px; font-weight: 800; color: #57735e; letter-spacing: .03em; }
+.expertise-card h3 { font-size: 26px; margin: 25px 0 12px; }
+.expertise-card p { font-size: 13px; line-height: 1.8; color: #6d8071; max-width: 45ch; }
+.expertise-skills { list-style: none; display: flex; flex-wrap: wrap; align-items: start; gap: 8px; margin: auto 0 0; padding: 20px 0 0; border-top: 1px solid #dde6da; }
+.expertise-skills li { padding: 8px 11px; border: 1px solid #d6e4d2; border-radius: 999px; background: #fff; color: #41644c; font-size: 11px; font-weight: 750; line-height: 1.4; white-space: nowrap; }
 
 /* CONTACT + FOOTER */
 .contact-section { color: #f4f8ed; background: #18342d; padding-top: 98px; }
