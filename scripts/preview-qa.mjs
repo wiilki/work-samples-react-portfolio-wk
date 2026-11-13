@@ -40,8 +40,9 @@ try {
     await page.locator(".project-card").first().waitFor();
     await page.waitForFunction(() => {
       const image = document.querySelector(".hero .project-screenshot");
-      return !!image && image.complete && image.naturalWidth >= 700;
+      return !!image && image.complete && image.naturalWidth >= 700 && image.classList.contains("is-loaded");
     }, null, { timeout: 20000 });
+    await page.locator(".hero .project-screenshot").evaluate(async image => image.decode());
     assert.equal(await page.locator(".project-card").count(),14,"All 14 project cards should render");
     assert.equal(await page.locator(".tech-grid").count(),1,"The tech background must exist");
     assert.equal(await page.locator(".signal-strip").count(),1,"The signal strip must exist");
@@ -50,10 +51,14 @@ try {
       bg:getComputedStyle(document.body).backgroundColor,
       gridMotion:getComputedStyle(document.querySelector(".tech-grid")).animationName,
       overflow:document.documentElement.scrollWidth > window.innerWidth + 2,
+      featuredImageHeight:document.querySelector(".hero .project-screenshot").getBoundingClientRect().height,
+      featuredImageOpacity:getComputedStyle(document.querySelector(".hero .project-screenshot")).opacity,
     }));
     assert.equal(state.bg,"rgb(5, 11, 23)","The new dark theme should be active");
     assert.equal(state.gridMotion,"none","Reduced motion should disable grid animation");
     assert.equal(state.overflow,false,"Page should not overflow the viewport");
+    assert.ok(state.featuredImageHeight >= 200,"The featured screenshot should fill the frame");
+    assert.equal(state.featuredImageOpacity,"1","The featured screenshot should be visible");
     if (name === "mobile") {
       const toggle = page.getByRole("button",{name:"Open navigation"});
       await toggle.click();
