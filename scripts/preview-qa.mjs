@@ -38,6 +38,10 @@ try {
     assert.equal(response.status(),200);
     await page.locator(".hero h1").waitFor();
     await page.locator(".project-card").first().waitFor();
+    await page.waitForFunction(() => {
+      const image = document.querySelector(".hero .project-screenshot");
+      return !!image && image.complete && image.naturalWidth >= 700;
+    }, null, { timeout: 20000 });
     assert.equal(await page.locator(".project-card").count(),14,"All 14 project cards should render");
     assert.equal(await page.locator(".tech-grid").count(),1,"The tech background must exist");
     assert.equal(await page.locator(".signal-strip").count(),1,"The signal strip must exist");
