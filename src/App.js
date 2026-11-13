@@ -1,41 +1,275 @@
-import React, { useState } from 'react';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Resume from './pages/Resume';
-import Portfolio from './pages/Portfolio';
-import Contact from './pages/Contact';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useMemo, useState } from "react";
+import { projectData, featuredProjects, filters } from "./data/projectData";
+import profileImage from "./assets/profile-img.jpg";
+import "./App.css";
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('Home');
+const github = "https://github.com/wiilki";
+const linkedin = "https://www.linkedin.com/in/thewillkim/";
+const email = "thewillkim@icloud.com";
 
-  const handlePageChange = (page) => setCurrentPage(page);
+function ExternalArrow() {
+  return <span className="link-arrow" aria-hidden="true">↗</span>;
+}
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'About':
-        return <About />;
-      case 'Resume':
-        return <Resume />;
-      case 'Portfolio':
-        return <Portfolio />;
-      case 'Contact':
-        return <Contact />;
-      default:
-        return <Home />;
-    }
-  };
-
+function SiteLink({ href, children, className = "" }) {
   return (
-    <div>
-      <Navigation currentPage={currentPage} handlePageChange={handlePageChange} />
-      {renderPage()}
-      <Footer />
+    <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+      <ExternalArrow />
+    </a>
+  );
+}
+
+function PreviewArtwork({ project }) {
+  return (
+    <div className="preview-artwork" aria-label={"Illustrative visual for " + project.title}>
+      <div className="artwork-orbit artwork-orbit-one" />
+      <div className="artwork-orbit artwork-orbit-two" />
+      <div className="artwork-window">
+        <div className="artwork-window-top">
+          <span className="artwork-dots" aria-hidden="true"><i/><i/><i/></span>
+          <span className="artwork-domain">{project.id.replace(/-/g, ".")}.studio</span>
+          <span className="artwork-menu" aria-hidden="true">•••</span>
+        </div>
+        <div className="artwork-content">
+          <div className="artwork-logo">{project.title.substring(0, 1)}</div>
+          <div className="artwork-copy">
+            <span className="artwork-kicker">PROJECT / {project.category.toUpperCase()}</span>
+            <strong>{project.title}</strong>
+            <span className="artwork-rule" />
+            <span className="artwork-bars"><i/><i/><i/></span>
+          </div>
+          <div className="artwork-tiles"><span/><span/><span/></div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+function ProjectPreview({ project, hero = false }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  // WordPress mShots takes an actual image of the published page; this means
+  // redesigned projects no longer depend on the portfolio's old static JPGs.
+  // The service may cache captures, so never claim a precise screenshot date.
+  const screenshot = project.live
+    ? "https://s0.wp.com/mshots/v1/" + encodeURIComponent(project.live) + "?w=1440&h=900"
+    : null;
+
+  return (
+    <div className={"project-preview tone-" + project.tone + (hero ? " preview-hero" : "")}>
+      {screenshot && !imageFailed ? (
+        <img
+          className="project-screenshot"
+          src={screenshot}
+          alt={"Live-site preview of " + project.title}
+          loading={hero ? "eager" : "lazy"}
+          onError={() => setImageFailed(true)}
+        />
+      ) : (
+        <PreviewArtwork project={project} />
+      )}
+      <span className="preview-type">{project.live ? "LIVE SITE PREVIEW" : "PROJECT ILLUSTRATION"}</span>
+    </div>
+  );
+}
+
+function ProjectActions({ project, compact = false }) {
+  return (
+    <div className={"project-actions" + (compact ? " compact-actions" : "")}>
+      {project.live && (
+        <SiteLink className="project-live-link" href={project.live}>
+          Visit website
+        </SiteLink>
+      )}
+      <SiteLink className="project-repo-link" href={project.repo}>
+        GitHub repository
+      </SiteLink>
+    </div>
+  );
+}
+
+function ProjectCard({ project, featured = false }) {
+  return (
+    <article className={"project-card" + (featured ? " featured-card" : "")}>
+      <div className="project-card-media">
+        <ProjectPreview project={project}/>
+        <div className="card-status"><span className={project.live ? "status-dot" : "status-dot status-dot-muted"}/>{project.live ? "Published" : "Code project"}</div>
+      </div>
+      <div className="project-card-body">
+        <div className="project-card-meta">
+          <span>{project.category}</span><span>{project.year}</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p className="project-subtitle">{project.subtitle}</p>
+        <p className="project-description">{project.description}</p>
+        <div className="tags" aria-label="Technologies">
+          {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+        </div>
+        <ProjectActions project={project} />
+      </div>
+    </article>
+  );
+}
+
+function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [
+    {label: "Work", href: "#work"},
+    {label: "About", href: "#about"},
+    {label: "Expertise", href: "#expertise"},
+    {label: "Contact", href: "#contact"}
+  ];
+  return (
+    <header className="site-header">
+      <div className="shell header-inner">
+        <a className="wordmark" href="#top" aria-label="Will Kim, back to top">
+          <span className="brand-symbol">w<span>.</span></span>
+          <span>will kim<span className="brand-suffix"> / portfolio</span></span>
+        </a>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setMenuOpen(!menuOpen)}
+        ><span/><span/><span/></button>
+        <nav id="primary-navigation" className={"primary-navigation" + (menuOpen ? " is-open" : "")} aria-label="Primary navigation">
+          {navItems.map((item) => <a href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
+          <a className="nav-contact" href={"mailto:" + email} onClick={() => setMenuOpen(false)}>Let's talk <ExternalArrow /></a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="shell hero-layout">
+        <div className="hero-copy">
+          <div className="eyebrow"><span className="eyebrow-mark"/> INDEPENDENT DEVELOPER · CALIFORNIA</div>
+          <h1 id="hero-title">Building digital work that <em>feels different.</em></h1>
+          <p className="hero-lead">I'm Will — a developer focused on making thoughtful, functional products. I bring design, engineering, and real-world problem-solving together in every project.</p>
+          <div className="hero-actions">
+            <a href="#work" className="button button-dark">Explore my work <span aria-hidden="true">↘</span></a>
+            <SiteLink href={github} className="button button-outline">View GitHub</SiteLink>
+          </div>
+          <div className="hero-trust"><span className="trust-rule" /> A curated collection of independent projects, experiments, and production-ready interfaces.</div>
+        </div>
+        <div className="hero-visual">
+          <div className="hero-image-shell">
+            <div className="hero-floating-label"><span className="pulse-dot"/> FEATURED BUILD / 01</div>
+            <ProjectPreview project={featuredProjects[0]} hero />
+            <div className="hero-image-caption">
+              <div><span>RECENT WORK</span><strong>{featuredProjects[0].title}</strong></div>
+              <SiteLink href={featuredProjects[0].live} className="hero-image-action">Explore site</SiteLink>
+            </div>
+          </div>
+          <div className="hero-stamp"><span>DESIGN</span><span>↗</span><span>BUILD</span></div>
+        </div>
+      </div>
+      <div className="shell hero-bottom">
+        <span>SCROLL TO EXPLORE</span><span className="hero-bottom-line"/><span>{projectData.length} SELECTED PROJECTS · {projectData.filter((p) => p.live).length} PUBLISHED LINKS</span>
+      </div>
+    </section>
+  );
+}
+
+function Work() {
+  const [activeFilter, setActiveFilter] = useState("All projects");
+  const [search, setSearch] = useState("");
+  const filtered = useMemo(() => projectData.filter((project) => {
+    const matchesFilter = activeFilter === "All projects" || project.category === activeFilter;
+    const term = search.trim().toLowerCase();
+    const searchable = [project.title, project.description, project.subtitle, project.category, ...project.tags].join(" ").toLowerCase();
+    return !project.featured && matchesFilter && (!term || searchable.includes(term));
+  }), [activeFilter, search]);
+
+  return (
+    <section className="section work-section" id="work" aria-labelledby="work-title">
+      <div className="shell">
+        <div className="section-topline"><span>01 / FEATURED WORK</span><span>SELECTED PROJECTS, 2024—2026</span></div>
+        <div className="section-heading">
+          <div><p className="section-kicker">DESIGN + DEVELOPMENT</p><h2 id="work-title">The work<span className="accent-dot">.</span></h2></div>
+          <p>From full-stack applications to quiet, detail-driven interfaces. Each project has its own challenges, decisions, and purpose.</p>
+        </div>
+        <div className="featured-grid">{featuredProjects.map((project) => <ProjectCard key={project.id} project={project} featured />)}</div>
+
+        <div className="archive-heading">
+          <div><span className="section-kicker">PROJECT ARCHIVE</span><h3>More things I've built</h3></div>
+          <p>Browse by focus area or search the collection.</p>
+        </div>
+        <div className="work-toolbar">
+          <div className="filter-group" role="group" aria-label="Filter projects">
+            {filters.map((filter) =>
+              <button type="button" key={filter} className={"filter-button" + (activeFilter === filter ? " active" : "")} onClick={() => setActiveFilter(filter)} aria-pressed={activeFilter === filter}>{filter}</button>
+            )}
+          </div>
+          <label className="search-box"><span className="search-icon" aria-hidden="true">⌕</span><span className="sr-only">Search projects</span><input type="search" value={search} placeholder="Search projects..." onChange={(event) => setSearch(event.target.value)} /></label>
+        </div>
+        <div className="projects-count" role="status">{filtered.length} {filtered.length === 1 ? "project" : "projects"} shown</div>
+        {filtered.length ? (
+          <div className="project-grid">{filtered.map((project) => <ProjectCard key={project.id} project={project} />)}</div>
+        ) : (
+          <div className="empty-state"><h3>No projects found.</h3><p>Try another search term or category.</p><button type="button" onClick={() => {setSearch(""); setActiveFilter("All projects");}}>Clear filters</button></div>
+        )}
+        <p className="preview-disclaimer">Published previews are captured from the public websites and may be cached by the screenshot provider. Projects without a published site use labeled illustrations instead of outdated screenshots.</p>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section className="section about-section" id="about" aria-labelledby="about-title">
+      <div className="shell about-grid">
+        <div className="about-portrait"><img src={profileImage} alt="Portrait of Will Kim" loading="lazy"/><span className="portrait-tag">HELLO, I'M WILL.</span></div>
+        <div className="about-copy">
+          <div className="section-topline"><span>02 / ABOUT ME</span></div>
+          <p className="section-kicker">CURIOUS BY DESIGN</p>
+          <h2 id="about-title">More than lines of code.</h2>
+          <p className="about-lead">I care about the entire experience — how a product looks, how it behaves, and whether it genuinely makes someone's life easier.</p>
+          <p>My background spans hands-on business operations, problem-solving, and full-stack development. That perspective helps me translate complex requirements into approachable experiences, with careful attention to the details that make software feel dependable.</p>
+          <p>I work with React and JavaScript, build practical backends, and enjoy experimenting with APIs, automation, and thoughtful product design.</p>
+          <div className="about-links"><SiteLink href={linkedin}>LinkedIn</SiteLink><SiteLink href={github}>GitHub</SiteLink><a href="/imports/resume.pdf" target="_blank" rel="noopener noreferrer">Résumé (PDF) <ExternalArrow/></a></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Expertise() {
+  const areas = [
+    {index: "01", title: "Frontend craft", description: "Modern, responsive interfaces built with attention to hierarchy, interaction, accessibility, and performance.", skills: "React / Next.js / JavaScript / CSS"},
+    {index: "02", title: "Backend thinking", description: "Working with data models, APIs, and application logic to create useful systems beyond the visual layer.", skills: "Node.js / Express / SQL / MongoDB"},
+    {index: "03", title: "Product mindset", description: "Organizing complex information and shaping features around the people who will actually use them.", skills: "UX / API integration / Testing / Automation"}
+  ];
+  return (
+    <section className="section expertise-section" id="expertise" aria-labelledby="expertise-title">
+      <div className="shell">
+        <div className="section-topline"><span>03 / WHAT I BRING</span></div>
+        <div className="section-heading expertise-heading"><div><p className="section-kicker">TOOLS + APPROACH</p><h2 id="expertise-title">Built with intention<span className="accent-dot">.</span></h2></div><p>Good work happens when thoughtful design and reliable engineering meet.</p></div>
+        <div className="expertise-grid">{areas.map((area) =>
+          <article className="expertise-card" key={area.index}><span className="expertise-number">{area.index} /</span><h3>{area.title}</h3><p>{area.description}</p><div className="expertise-skills">{area.skills}</div></article>
+        )}</div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="contact-section" id="contact" aria-labelledby="contact-title">
+      <div className="shell contact-inner">
+        <div><p className="section-kicker">04 / GET IN TOUCH</p><h2 id="contact-title">Have something<br/><em>in mind?</em></h2></div>
+        <div className="contact-side"><p>I'm always interested in an interesting challenge, a thoughtful collaboration, or a conversation about building something useful.</p><a href={"mailto:" + email} className="contact-cta">Start a conversation <ExternalArrow/></a></div>
+      </div>
+      <footer className="shell footer-inner"><span>© {new Date().getFullYear()} Will Kim. Built with care.</span><div><SiteLink href={github}>GitHub</SiteLink><SiteLink href={linkedin}>LinkedIn</SiteLink><a href="#top">Back to top ↑</a></div></footer>
+    </section>
+  );
+}
+
+export default function App() {
+  return <><a className="skip-link" href="#work">Skip to projects</a><Header/><main><Hero/><Work/><About/><Expertise/><Contact/></main></>;
+}

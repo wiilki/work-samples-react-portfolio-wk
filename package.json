@@ -2,20 +2,9 @@
   "name": "work-samples-react-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://william-kim.com/",
+  "homepage": "https://work-samples-react-portfolio-wk-bfdd.vercel.app/",
   "dependencies": {
-    "@srexi/purecounterjs": "^1.5.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "aos": "^2.3.4",
-    "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.11.3",
-    "boxicons": "^2.1.4",
     "gh-pages": "^5.0.0",
-    "ityped": "^1.0.3",
-    "jquery": "^3.6.4",
-    "jquery-form": "^4.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "5.0.1",
@@ -31,8 +20,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
