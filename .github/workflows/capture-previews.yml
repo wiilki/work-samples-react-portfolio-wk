@@ -1,12 +1,13 @@
 name: Refresh project screenshots
 
 on:
-  # Run once on this design branch so fresh captures are included in its PR.
+  # Regenerate browser captures when this release updates project URLs.
   push:
     branches:
-      - portfolio/modern-blue-previews-2026
+      - portfolio/kinetic-tech-command-center-2026
     paths:
       - .github/workflows/capture-previews.yml
+      - scripts/preview-sources.json
   # After merge, launch from Actions whenever published project UIs change.
   workflow_dispatch:
 
