@@ -74,7 +74,7 @@ export const projectData = [
     description: "A location-aware weather dashboard with 12-hour and seven-day forecasts, search suggestions, local-time daylight details, and unit preferences.",
     tags: ["Open-Meteo", "JavaScript", "Data visualization"],
     repo: "https://github.com/wiilki/city-weather-search-app-wk",
-    live: "https://wiilki.github.io/city-weather-search-app-wk/",
+    live: "https://atmos-weather-roan.vercel.app/",
     tone: "sky",
     year: "2026"
   },
