@@ -240,18 +240,51 @@ function About() {
 }
 
 function Expertise() {
+  // Technologies used across the projects in this portfolio and related
+  // Python/data projects. Listing experience does not imply a proficiency level.
   const areas = [
-    {index: "01", title: "Frontend craft", description: "Modern, responsive interfaces built with attention to hierarchy, interaction, accessibility, and performance.", skills: "React / Next.js / JavaScript / CSS"},
-    {index: "02", title: "Backend thinking", description: "Working with data models, APIs, and application logic to create useful systems beyond the visual layer.", skills: "Node.js / Express / SQL / MongoDB"},
-    {index: "03", title: "Product mindset", description: "Organizing complex information and shaping features around the people who will actually use them.", skills: "UX / API integration / Testing / Automation"}
+    {
+      index: "01",
+      title: "Programming languages",
+      description: "The languages and web fundamentals I use to build interfaces, logic, and data workflows.",
+      skills: ["JavaScript", "Python", "HTML5", "CSS3", "SQL"]
+    },
+    {
+      index: "02",
+      title: "Frontend development",
+      description: "Responsive, accessible web interfaces with reusable components and thoughtful interaction design.",
+      skills: ["React", "Next.js", "Responsive design", "Accessibility"]
+    },
+    {
+      index: "03",
+      title: "Backend & databases",
+      description: "APIs, server-side application logic, and relational or document-based data storage.",
+      skills: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Sequelize"]
+    },
+    {
+      index: "04",
+      title: "Tools & workflows",
+      description: "Version control, validation, automated workflows, and shipping projects to the web.",
+      skills: ["Git", "GitHub", "GitHub Actions", "Testing", "Vercel", "GitHub Pages"]
+    }
   ];
   return (
     <section className="section expertise-section" id="expertise" aria-labelledby="expertise-title">
       <div className="shell">
         <div className="section-topline"><span>03 / WHAT I BRING</span></div>
-        <div className="section-heading expertise-heading"><div><p className="section-kicker">TOOLS + APPROACH</p><h2 id="expertise-title">Built with intention<span className="accent-dot">.</span></h2></div><p>Good work happens when thoughtful design and reliable engineering meet.</p></div>
+        <div className="section-heading expertise-heading">
+          <div><p className="section-kicker">LANGUAGES + TECHNOLOGIES</p><h2 id="expertise-title">Built with intention<span className="accent-dot">.</span></h2></div>
+          <p>A practical toolkit shaped by the websites, applications, backends, and data projects I've worked on.</p>
+        </div>
         <div className="expertise-grid">{areas.map((area) =>
-          <article className="expertise-card" key={area.index}><span className="expertise-number">{area.index} /</span><h3>{area.title}</h3><p>{area.description}</p><div className="expertise-skills">{area.skills}</div></article>
+          <article className="expertise-card" key={area.index}>
+            <span className="expertise-number">{area.index} /</span>
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+            <ul className="expertise-skills" aria-label={area.title + " technologies"}>
+              {area.skills.map((skill) => <li key={skill}>{skill}</li>)}
+            </ul>
+          </article>
         )}</div>
       </div>
     </section>
