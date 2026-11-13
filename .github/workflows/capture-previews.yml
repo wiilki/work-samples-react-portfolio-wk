@@ -33,13 +33,17 @@ jobs:
       - name: Capture published projects
         run: node scripts/capture-previews.mjs
       - name: Commit screenshots when changed
+        shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A public/previews
-          if ! git diff --cached --quiet; then
-            git commit -m "Capture current screenshots of published portfolio projects"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+          # Checkout sets safe.directory in a temporary HOME. Set it again in
+          # the container so ordinary git write commands can locate the repo.
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git -C "$GITHUB_WORKSPACE" config user.name "github-actions[bot]"
+          git -C "$GITHUB_WORKSPACE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$GITHUB_WORKSPACE" add -A public/previews
+          if ! git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
+            git -C "$GITHUB_WORKSPACE" commit -m "Capture current screenshots of published portfolio projects"
+            git -C "$GITHUB_WORKSPACE" push origin "HEAD:${GITHUB_REF_NAME}"
           else
             echo "No screenshot changes"
           fi
