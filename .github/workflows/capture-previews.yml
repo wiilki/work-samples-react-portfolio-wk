@@ -1,0 +1,43 @@
+name: Refresh project screenshots
+
+on:
+  # Run once on this design branch so fresh captures are included in its PR.
+  push:
+    branches:
+      - portfolio/modern-blue-previews-2026
+    paths:
+      - .github/workflows/capture-previews.yml
+  # After merge, launch from Actions whenever published project UIs change.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install browser capture tool
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Capture published projects
+        run: node scripts/capture-previews.mjs
+      - name: Commit screenshots when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/previews
+          if ! git diff --cached --quiet; then
+            git commit -m "Capture current screenshots of published portfolio projects"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          else
+            echo "No screenshot changes"
+          fi
