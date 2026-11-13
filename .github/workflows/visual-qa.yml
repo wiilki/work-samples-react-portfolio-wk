@@ -40,5 +40,6 @@ jobs:
           git -C "$GITHUB_WORKSPACE" add -A docs/previews
           if ! git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
             git -C "$GITHUB_WORKSPACE" commit -m "Store verified kinetic portfolio previews"
+            git -C "$GITHUB_WORKSPACE" pull --rebase origin "${GITHUB_REF_NAME}"
             git -C "$GITHUB_WORKSPACE" push origin "HEAD:${GITHUB_REF_NAME}"
           fi
