@@ -28,7 +28,7 @@ function PreviewArtwork({ project }) {
       <div className="artwork-window">
         <div className="artwork-window-top">
           <span className="artwork-dots" aria-hidden="true"><i/><i/><i/></span>
-          <span className="artwork-domain">{project.id.replace(/-/g, ".")}.studio</span>
+          <span className="artwork-domain">SOURCE-ONLY CONCEPT</span>
           <span className="artwork-menu" aria-hidden="true">•••</span>
         </div>
         <div className="artwork-content">
@@ -47,28 +47,34 @@ function PreviewArtwork({ project }) {
 }
 
 function ProjectPreview({ project, hero = false }) {
-  const [imageFailed, setImageFailed] = useState(false);
-  // WordPress mShots takes an actual image of the published page; this means
-  // redesigned projects no longer depend on the portfolio's old static JPGs.
-  // The service may cache captures, so never claim a precise screenshot date.
-  const screenshot = project.live
-    ? "https://s0.wp.com/mshots/v1/" + encodeURIComponent(project.live) + "?w=1440&h=900"
-    : null;
+  const [sourceIndex, setSourceIndex] = useState(0);
+
+  // Saved browser screenshots load first. External services are fallbacks
+  // while captures are being refreshed; illustrations are never called photos.
+  const sources = project.live ? [
+    "/previews/" + project.id + ".png",
+    "https://image.thum.io/get/width/1440/crop/900/noanimate/" + project.live,
+    "https://s0.wp.com/mshots/v1/" + encodeURIComponent(project.live) + "?w=1440&h=900",
+  ] : [];
+  const screenshot = sources[sourceIndex];
 
   return (
     <div className={"project-preview tone-" + project.tone + (hero ? " preview-hero" : "")}>
-      {screenshot && !imageFailed ? (
+      {screenshot ? (
         <img
           className="project-screenshot"
           src={screenshot}
-          alt={"Live-site preview of " + project.title}
+          alt={"Screenshot of " + project.title + " website"}
           loading={hero ? "eager" : "lazy"}
-          onError={() => setImageFailed(true)}
+          decoding="async"
+          onError={() => setSourceIndex((index) => index + 1)}
         />
       ) : (
         <PreviewArtwork project={project} />
       )}
-      <span className="preview-type">{project.live ? "LIVE SITE PREVIEW" : "PROJECT ILLUSTRATION"}</span>
+      <span className="preview-type">
+        {screenshot ? "ACTUAL WEBSITE CAPTURE" : project.live ? "SCREENSHOT UNAVAILABLE" : "DESIGN ILLUSTRATION"}
+      </span>
     </div>
   );
 }
@@ -214,7 +220,7 @@ function Work() {
         ) : (
           <div className="empty-state"><h3>No projects found.</h3><p>Try another search term or category.</p><button type="button" onClick={() => {setSearch(""); setActiveFilter("All projects");}}>Clear filters</button></div>
         )}
-        <p className="preview-disclaimer">Published previews are captured from the public websites and may be cached by the screenshot provider. Projects without a published site use labeled illustrations instead of outdated screenshots.</p>
+        <p className="preview-disclaimer">Published projects use saved real-site screenshots, with external captures as fallbacks. Projects without a confirmed public demo display clearly labeled illustrations, not fabricated screenshots.</p>
       </div>
     </section>
   );
