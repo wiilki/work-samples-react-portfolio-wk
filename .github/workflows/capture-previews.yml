@@ -16,6 +16,8 @@ permissions:
 jobs:
   capture:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +29,7 @@ jobs:
       - name: Install browser capture tool
         run: |
           npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.56.0
-          npx playwright install --with-deps chromium
+          # Browser and system libraries are included in the pinned container.
       - name: Capture published projects
         run: node scripts/capture-previews.mjs
       - name: Commit screenshots when changed
