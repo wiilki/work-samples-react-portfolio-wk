@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { projectData, featuredProjects, filters } from "./projectData";
 
 test("portfolio project slugs and repositories are unique", () => {
@@ -24,5 +26,22 @@ test("featured items exist in the main project catalog", () => {
   featuredProjects.forEach((project) => {
     expect(projectData).toContain(project);
     expect(project.live).toBeTruthy();
+  });
+});
+
+test("published projects have real stored screenshots and matching capture sources", () => {
+  const sources = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, "../../scripts/preview-sources.json"), "utf8")
+  );
+  const published = projectData.filter((project) => Boolean(project.live));
+  expect(sources.map((source) => source.id).sort()).toEqual(
+    published.map((project) => project.id).sort()
+  );
+
+  published.forEach((project) => {
+    const source = sources.find((item) => item.id === project.id);
+    expect(source.url).toBe(project.live);
+    const screenshotPath = path.resolve(__dirname, "../../public/previews", project.id + ".png");
+    expect(fs.statSync(screenshotPath).size).toBeGreaterThan(10000);
   });
 });
