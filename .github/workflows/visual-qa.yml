@@ -3,9 +3,12 @@ name: Visual QA · kinetic portfolio
 on:
   push:
     branches:
-      - portfolio/kinetic-tech-command-center-2026
+      - portfolio/motion-upgrade-nov-2026
     paths:
       - scripts/preview-qa.mjs
+      - src/MotionPlus.css
+      - src/TechFX.js
+      - src/App.js
       - .github/workflows/visual-qa.yml
   workflow_dispatch:
 

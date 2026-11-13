@@ -70,6 +70,50 @@ try {
     console.log(name + " visual checks passed, background="+state.bg);
     await context.close();
   }
+  // Verify the motion experience as well as the reduced-motion fallback.
+  const motionContext = await browser.newContext({
+    viewport: {width: 1440, height: 900},
+    deviceScaleFactor: 1,
+    reducedMotion: "no-preference"
+  });
+  try {
+    const motionPage = await motionContext.newPage();
+    const errors = [];
+    motionPage.on("pageerror", error => errors.push(error.message));
+    const response = await motionPage.goto(url, {waitUntil: "load", timeout: 30000});
+    assert.equal(response.status(), 200);
+    await motionPage.locator(".process-stage").first().waitFor();
+    const animationState = await motionPage.evaluate(() => {
+      const orbit = document.querySelector(".orbit-hud-ring-outer");
+      const packet = document.querySelector(".process-flow-one");
+      const card = document.querySelector(".project-card");
+      return {
+        orbit: getComputedStyle(orbit).animationName,
+        packet: getComputedStyle(packet).animationName,
+        card: getComputedStyle(card).animationName,
+        stages: document.querySelectorAll(".process-stage").length,
+        overflow: document.documentElement.scrollWidth > window.innerWidth + 2
+      };
+    });
+    assert.equal(animationState.orbit, "orbital-spin", "Hero orbit should animate");
+    assert.equal(animationState.packet, "packet-travel", "Workflow particles should animate");
+    assert.equal(animationState.card, "card-materialize", "Project cards should enter in sequence");
+    assert.equal(animationState.stages, 3, "All workflow stages should render");
+    assert.equal(animationState.overflow, false, "Animation layout must not overflow desktop");
+    await motionPage.locator("#process-title").scrollIntoViewIfNeeded();
+    await motionPage.waitForTimeout(420);
+    await motionPage.screenshot({path: path.join(out, "motion-process.png"), animations:"disabled"});
+
+    // Filtering must still work despite animation-driven mounting.
+    await motionPage.getByRole("button", {name:"Web apps", exact:true}).click();
+    await motionPage.getByRole("searchbox", {name:"Search projects"}).fill("Atmos");
+    assert.equal(await motionPage.locator(".project-grid .project-card").count(), 1);
+    assert.match(await motionPage.locator(".project-grid .project-card h3").innerText(), /Atmos/);
+    assert.deepEqual(errors, [], "No uncaught browser errors during animation or filtering");
+    console.log("motion-enabled visual and interaction checks passed");
+  } finally {
+    await motionContext.close();
+  }
 } finally {
   await browser.close();
   await new Promise(resolve=>server.close(resolve));

@@ -4,10 +4,10 @@ A fully refreshed, responsive React portfolio featuring selected websites, web a
 
 ## Current design
 
-- A kinetic dark-tech design with a luminous schematic background, animated signal tracer, scroll progress, floating project display, interactive 3D card highlights, featured work, searchable/filterable project archive, about, expertise, and contact sections.
+- An immersive kinetic dark-tech design with a luminous schematic background, scroll progress, orbiting hero satellites, animated accent gradients, flowing data packets, featured project cards with staggered reveals and light sweeps, searchable/filterable project archive, an animated three-stage creative workflow, about, expertise, and contact sections.
 - Honest project cards with meaningful descriptions, technologies, GitHub links, and live-site links **only for projects with a known public deployment**.
 - Published project previews prefer locally stored **real browser screenshots** captured from live project URLs by Playwright. A pair of external screenshot services acts as fallback while the local image is unavailable. Source-only projects use labeled illustrative previews, not fabricated screenshots.
-- A custom high-contrast, electric cyan/violet/navy visual system built with CSS and small React motion components. Animations are progressively enhanced, and reduced-motion users receive a static, fully functional experience.
+- A custom high-contrast, electric cyan/violet/navy visual system built with CSS and small React motion components. Most motion is composited transforms or opacity; all moving visuals are decorative, and users requesting reduced motion receive a static, fully functional experience.
 - Source-only applications such as Paceboard are **not represented as currently live** until deployment is confirmed.
 
 ## Run locally
@@ -53,3 +53,7 @@ Design and UI composition for this portfolio are original. Third-party project c
 ### Atmos deployment
 
 The Atmos card links to [the current Vercel deployment](https://atmos-weather-roan.vercel.app/), deployed directly from the weather repository's `main` source (commit `fba2428`). The older GitHub Pages URL had not picked up the redesigned app. The Atmos Vercel project is **not Git-connected**; future changes in that repository will need a new explicit deployment unless the Git connection is configured.
+
+## Motion checks
+
+`src/MotionPlus.css` contains the secondary animation system; `OrbitHUD` and `ProcessPulse` live in `src/TechFX.js`. Animation effects must not obscure controls or imply fake live metrics. The Playwright visual check in `scripts/preview-qa.mjs` runs the existing desktop/mobile reduced-motion checks, then verifies the regular motion path and project filtering. Run it via **Actions → Visual QA · kinetic portfolio → Run workflow**, or after a local production build with Playwright installed.

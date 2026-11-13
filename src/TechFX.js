@@ -104,6 +104,61 @@ export function SignalStrip() {
   );
 }
 
+/**
+ * Decorative satellite system framing the featured work. All orbital motion is
+ * CSS-only and disabled when the visitor requests reduced motion.
+ */
+export function OrbitHUD() {
+  return (
+    <div className="orbit-hud" aria-hidden="true">
+      <div className="orbit-hud-ring orbit-hud-ring-outer"><span className="orbit-satellite orbit-satellite-one" /></div>
+      <div className="orbit-hud-ring orbit-hud-ring-middle"><span className="orbit-satellite orbit-satellite-two" /></div>
+      <div className="orbit-hud-ring orbit-hud-ring-inner"><span className="orbit-satellite orbit-satellite-three" /></div>
+      <span className="orbit-hud-cross orbit-hud-cross-n">+</span>
+      <span className="orbit-hud-cross orbit-hud-cross-s">+</span>
+      <span className="orbit-hud-coordinate orbit-hud-coordinate-a">51.507 // BUILD</span>
+      <span className="orbit-hud-coordinate orbit-hud-coordinate-b">SYS: ACTIVE</span>
+    </div>
+  );
+}
+
+const processStages = [
+  { number: "01", label: "EXPLORE", title: "Find the signal", detail: "Understand the problem and uncover what matters." },
+  { number: "02", label: "ENGINEER", title: "Shape the system", detail: "Translate ideas into usable, maintainable software." },
+  { number: "03", label: "REFINE", title: "Make it feel right", detail: "Test, adjust, and polish the experience." }
+];
+
+export function ProcessPulse() {
+  return (
+    <section className="process-section" aria-labelledby="process-title">
+      <div className="shell process-shell">
+        <div className="section-topline"><span>01.5 / HOW I BUILD</span><span className="process-status"><i aria-hidden="true" /> SYSTEM ONLINE</span></div>
+        <div className="process-heading" data-reveal>
+          <div><p className="section-kicker">THE CREATIVE LOOP</p><h2 id="process-title">Ideas in motion<span className="accent-dot">.</span></h2></div>
+          <p>Every project moves from discovery to deliberate execution—then back through iteration.</p>
+        </div>
+        <div className="process-rail" aria-hidden="true">
+          <span className="process-rail-track" />
+          <span className="process-flow process-flow-one" />
+          <span className="process-flow process-flow-two" />
+          <span className="process-flow process-flow-three" />
+        </div>
+        <div className="process-grid">
+          {processStages.map((stage, index) => (
+            <article className="process-stage" key={stage.number} data-reveal style={{"--process-index":index}}>
+              <span className="process-stage-number">{stage.number} <span aria-hidden="true">/</span> {stage.label}</span>
+              <div className="process-node" aria-hidden="true"><span className="process-node-core" /></div>
+              <h3>{stage.title}</h3>
+              <p>{stage.detail}</p>
+              <div className="process-stage-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function SignalDiagram() {
   return (
     <div className="signal-diagram" aria-hidden="true">

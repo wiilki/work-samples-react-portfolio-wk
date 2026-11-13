@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { projectData, featuredProjects, filters } from "./data/projectData";
 import profileImage from "./assets/profile-img.jpg";
-import { MotionSystem, TechAtmosphere, SignalStrip, SignalDiagram } from "./TechFX";
+import { MotionSystem, TechAtmosphere, SignalStrip, SignalDiagram, OrbitHUD, ProcessPulse } from "./TechFX";
 import "./App.css";
 import "./TechFX.css";
+import "./MotionPlus.css";
 
 const github = "https://github.com/wiilki";
 const linkedin = "https://www.linkedin.com/in/thewillkim/";
@@ -116,9 +117,9 @@ function onProjectPointerLeave(event) {
   event.currentTarget.style.removeProperty("--hover-y");
 }
 
-function ProjectCard({ project, featured = false }) {
+function ProjectCard({ project, featured = false, index = 0 }) {
   return (
-    <article className={"project-card" + (featured ? " featured-card" : "")} onPointerMove={onProjectPointerMove} onPointerLeave={onProjectPointerLeave}>
+    <article className={"project-card" + (featured ? " featured-card" : "")} style={{"--card-index": Math.min(index, 8)}} onPointerMove={onProjectPointerMove} onPointerLeave={onProjectPointerLeave}>
       <div className="project-card-media">
         <ProjectPreview project={project}/>
         <div className="card-status"><span className={project.live ? "status-dot" : "status-dot status-dot-muted"}/>{project.live ? "Published" : "Code project"}</div>
@@ -195,6 +196,7 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual" data-reveal>
+          <OrbitHUD />
           <div className="hero-image-shell">
             <span className="holo-index" aria-hidden="true">PROJECT_001 // FEATURED</span>
             <div className="hero-floating-label"><span className="pulse-dot"/> FEATURED BUILD / 01</div>
@@ -232,7 +234,7 @@ function Work() {
           <div><p className="section-kicker">DESIGN + DEVELOPMENT</p><h2 id="work-title">The work<span className="accent-dot">.</span></h2></div>
           <p>From full-stack applications to quiet, detail-driven interfaces. Each project has its own challenges, decisions, and purpose.</p>
         </div>
-        <div className="featured-grid">{featuredProjects.map((project) => <ProjectCard key={project.id} project={project} featured />)}</div>
+        <div className="featured-grid">{featuredProjects.map((project, index) => <ProjectCard key={project.id} project={project} featured index={index} />)}</div>
 
         <div className="archive-heading">
           <div><span className="section-kicker">PROJECT ARCHIVE</span><h3>More things I've built</h3></div>
@@ -248,7 +250,7 @@ function Work() {
         </div>
         <div className="projects-count" role="status">{filtered.length} {filtered.length === 1 ? "project" : "projects"} shown</div>
         {filtered.length ? (
-          <div className="project-grid">{filtered.map((project) => <ProjectCard key={project.id} project={project} />)}</div>
+          <div className="project-grid">{filtered.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>
         ) : (
           <div className="empty-state"><h3>No projects found.</h3><p>Try another search term or category.</p><button type="button" onClick={() => {setSearch(""); setActiveFilter("All projects");}}>Clear filters</button></div>
         )}
@@ -343,5 +345,5 @@ function Contact() {
 }
 
 export default function App() {
-  return <><a className="skip-link" href="#work">Skip to projects</a><MotionSystem/><TechAtmosphere/><Header/><main><Hero/><SignalStrip/><Work/><About/><Expertise/><Contact/></main></>;
+  return <><a className="skip-link" href="#work">Skip to projects</a><MotionSystem/><TechAtmosphere/><Header/><main><Hero/><SignalStrip/><Work/><ProcessPulse/><About/><Expertise/><Contact/></main></>;
 }
