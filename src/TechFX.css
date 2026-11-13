@@ -376,5 +376,21 @@ main { position: relative; z-index: 1; }
 }
 
 /* Keep the hero polished while a real remote image decodes. */
-.project-screenshot { position: relative; z-index: 1; opacity: 0; transition: opacity .45s ease, transform .6s cubic-bezier(.2,.7,.2,1), filter .5s; }
+.project-screenshot { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; transition: opacity .45s ease, transform .6s cubic-bezier(.2,.7,.2,1), filter .5s; }
 .project-screenshot.is-loaded { opacity: 1; }
+
+/* The generated image and its loading illustration share one fixed frame. */
+.preview-artwork { z-index: 0; }
+.tone-olive { background: linear-gradient(130deg, #173853, #0c1935); }
+.tone-peach { background: linear-gradient(130deg, #44385e, #18223e); }
+.tone-coral { background: linear-gradient(130deg, #4c285a, #1a1b3d); }
+.tone-violet { background: linear-gradient(130deg, #332b71, #171b45); }
+.tone-blue { background: linear-gradient(130deg, #184e84, #0a2347); }
+.tone-sky { background: linear-gradient(130deg, #135a79, #102646); }
+.tone-mint { background: linear-gradient(130deg, #135e63, #102f45); }
+.tone-indigo { background: linear-gradient(130deg, #283f80, #161d47); }
+.tone-sand { background: linear-gradient(130deg, #4a435f, #232442); }
+.tone-plum { background: linear-gradient(130deg, #44317a, #211e49); }
+.tone-sage { background: linear-gradient(130deg, #2b5267, #0c283f); }
+.tone-amber { background: linear-gradient(130deg, #55436c, #1b284a); }
+.tone-rose { background: linear-gradient(130deg, #513a6d, #1d2340); }
