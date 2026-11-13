@@ -93,7 +93,8 @@ export function SignalStrip() {
     <div className="signal-strip" aria-label="Areas of work">
       <div className="signal-strip-heading"><span className="live-indicator" /> CURRENT FOCUS <span className="signal-arrow">↗</span></div>
       <div className="signal-window">
-        <div className="signal-track">
+        <span className="sr-only">Interactive experiences, frontend engineering, API integrations, data and automation, React, Python, and design systems.</span>
+        <div className="signal-track" aria-hidden="true">
           {[...topics, ...topics].map((topic,index) =>
             <span className="signal-item" key={index}><i aria-hidden="true" />{topic}</span>
           )}
