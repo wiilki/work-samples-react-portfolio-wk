@@ -28,7 +28,7 @@ jobs:
       - name: Install and build
         run: |
           npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.56.0
-          npm run build
+          PUBLIC_URL=/ npm run build
       - name: Run desktop and mobile visual checks
         run: node scripts/preview-qa.mjs
       - name: Save screenshots for review
