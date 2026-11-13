@@ -42,6 +42,11 @@ try {
       }
       await page.waitForLoadState("load", { timeout: 12000 }).catch(() => {});
       await page.evaluate(() => document.fonts?.ready).catch(() => {});
+      // Weather dashboard fetches its first forecast after initial page load.
+      // Give its live content time to settle before recording the preview.
+      if (id === "atmos") {
+        await page.locator("#dashboard[aria-busy='false']").waitFor({ timeout: 16000 }).catch(() => {});
+      }
       await page.waitForTimeout(1800);
 
       const title = await page.title();
