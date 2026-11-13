@@ -50,6 +50,7 @@ function PreviewArtwork({ project }) {
 
 function ProjectPreview({ project, hero = false }) {
   const [sourceIndex, setSourceIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Saved browser screenshots load first. External services are fallbacks
   // while captures are being refreshed; illustrations are never called photos.
@@ -62,21 +63,21 @@ function ProjectPreview({ project, hero = false }) {
 
   return (
     <div className={"project-preview tone-" + project.tone + (hero ? " preview-hero" : "")}>
-      {screenshot ? (
+      {!imageLoaded && <PreviewArtwork project={project} />}
+      {screenshot && (
         <img
-          className="project-screenshot"
+          className={"project-screenshot" + (imageLoaded ? " is-loaded" : "")}
           src={screenshot}
           alt={"Screenshot of " + project.title + " website"}
           loading={hero ? "eager" : "lazy"}
           decoding="async"
-          onError={() => setSourceIndex((index) => index + 1)}
+          onLoad={() => setImageLoaded(true)}
+          onError={() => { setImageLoaded(false); setSourceIndex((index) => index + 1); }}
         />
-      ) : (
-        <PreviewArtwork project={project} />
       )}
       <div className="preview-chrome" aria-hidden="true"><i /><i /><i /><span>{project.live ? "LIVE_CAPTURE" : "DESIGN_CONCEPT"}</span></div>
       <span className="preview-type">
-        {screenshot ? "ACTUAL WEBSITE CAPTURE" : project.live ? "SCREENSHOT UNAVAILABLE" : "DESIGN ILLUSTRATION"}
+        {imageLoaded ? "ACTUAL WEBSITE CAPTURE" : screenshot ? "LOADING SITE CAPTURE" : project.live ? "SCREENSHOT UNAVAILABLE" : "DESIGN ILLUSTRATION"}
       </span>
     </div>
   );
