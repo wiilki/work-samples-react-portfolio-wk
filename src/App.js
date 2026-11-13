@@ -4,6 +4,7 @@ import profileImage from "./assets/profile-img.jpg";
 import { MotionSystem, TechAtmosphere, SignalStrip, SignalDiagram, OrbitHUD, ProcessPulse } from "./TechFX";
 import "./App.css";
 import "./TechFX.css";
+import "./MotionPlus.css";
 
 const github = "https://github.com/wiilki";
 const linkedin = "https://www.linkedin.com/in/thewillkim/";
